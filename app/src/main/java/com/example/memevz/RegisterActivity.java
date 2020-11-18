@@ -12,6 +12,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private Button btn;
     private TextView signIn;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -10,13 +10,24 @@ import android.widget.ImageButton;
 public class ProfileActivity extends AppCompatActivity {
 
     private ImageButton btnHome, btnUpload, btnProfile;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);btnHome = (ImageButton)findViewById(R.id.btn_nav_home);
+
+
+        setContentView(R.layout.activity_profile);
+
+        //assign the NavigationBar Buttons
+        btnHome = (ImageButton)findViewById(R.id.btn_nav_home);
         btnUpload = (ImageButton)findViewById(R.id.btn_nav_upload);
         btnProfile = (ImageButton)findViewById(R.id.btn_nav_profile);
+
+        //correct the NavigationBar colors
+        setNavigationBarColor();
+
+        //NavigationBar onClick Events
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,8 +46,14 @@ public class ProfileActivity extends AppCompatActivity {
                 openProfileActivity();
             }
         });
+
     }
 
+    private void setNavigationBarColor() {
+        btnHome.setImageResource(R.drawable.home);
+        btnUpload.setImageResource(R.drawable.upload);
+        btnProfile.setImageResource(R.drawable.settedprofile);
+    }
 
 
     private void openProfileActivity() {
