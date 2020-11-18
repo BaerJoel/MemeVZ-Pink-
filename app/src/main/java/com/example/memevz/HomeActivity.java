@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -110,8 +111,11 @@ public class HomeActivity extends AppCompatActivity {
 
     private void setNavigationBarColor() {
         btnHome.setImageResource(R.drawable.settedhome);
+        btnHome.setBackgroundColor(Color.parseColor("#a10046"));
         btnUpload.setImageResource(R.drawable.upload);
+        btnUpload.setBackgroundColor(Color.parseColor("#ba0051"));
         btnProfile.setImageResource(R.drawable.profile);
+        btnProfile.setBackgroundColor(Color.parseColor("#ba0051"));
     }
 
     private void openProfileActivity() {

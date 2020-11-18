@@ -3,6 +3,7 @@ package com.example.memevz;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -50,8 +51,11 @@ public class UploadActivity extends AppCompatActivity {
 
     private void setNavigationBarColor() {
         btnHome.setImageResource(R.drawable.home);
+        btnHome.setBackgroundColor(Color.parseColor("#ba0051"));
         btnUpload.setImageResource(R.drawable.settedupload);
+        btnUpload.setBackgroundColor(Color.parseColor("#a10046"));
         btnProfile.setImageResource(R.drawable.profile);
+        btnProfile.setBackgroundColor(Color.parseColor("#ba0051"));
     }
 
     private void openProfileActivity() {

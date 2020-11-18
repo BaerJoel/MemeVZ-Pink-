@@ -18,5 +18,6 @@
     <color name="black">#000000</color>
     <color name="colorPrimary">#e20062</color>
     <color name="colorPrimaryDark">#ba0051</color>
+    <color name="colorPrimaryDarkDark">#a10046</color>
     <color name="colorAccent">#ffff</color>
 </resources>
