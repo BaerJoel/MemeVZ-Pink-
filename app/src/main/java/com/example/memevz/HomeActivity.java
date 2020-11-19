@@ -6,17 +6,17 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 public class HomeActivity extends AppCompatActivity {
 
     private ImageButton btnHome, btnProfile, btnUpload, like, dislike;
     private ImageView memeView;
-    private Image meme;
+    private Meme meme;
     private User user;
 
     @SuppressLint("ClickableViewAccessibility")
@@ -126,8 +126,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private void openUploadActivity() {
         Intent intent = new Intent(this, UploadActivity.class);
-        intent.putExtra("userId", user.getUserId());
-        intent.putExtra("userName", user.getUsername());
+        /*intent.putExtra("userId", user.getUserId());
+        intent.putExtra("userName", user.getUsername());*/
         startActivity(intent);
     }
 

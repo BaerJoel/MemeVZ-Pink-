@@ -1,9 +1,31 @@
 package com.example.memevz;
 
-public class Image {
+
+import android.media.Image;
+
+public class Meme {
     private int imgId, likes, dislikes;
     private String imgBlob, decription;
     private User user;
+    private Image img;
+
+    public Meme(int imgId) {
+        this.imgId = imgId;
+    }
+
+    public Meme(Image img, String description, User user) {
+        this.img = img;
+        this.decription = description;
+        this.user = user;
+    }
+
+    public void setImg(Image img) {
+        this.img = img;
+    }
+
+    public Image getImg() {
+        return this.img;
+    }
 
     public int getImgId() {
         return imgId;
@@ -57,8 +79,5 @@ public class Image {
         return true;
     }
 
-    public int getImg() {
-        return R.drawable.dislike;
-    }
 
 }

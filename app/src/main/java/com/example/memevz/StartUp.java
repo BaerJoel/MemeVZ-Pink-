@@ -3,6 +3,10 @@ package com.example.memevz;
 public class StartUp {
     private String logInToken;
 
+    public StartUp() {
+
+    }
+
     public String getLogInToken() {
         return logInToken;
     }
@@ -19,7 +23,7 @@ public class StartUp {
         return true;
     }
 
-    private boolean isLoggedIn() {
+    private boolean isLoggedIn(String logInToken) {
         return true;
     }
 

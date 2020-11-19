@@ -2,15 +2,10 @@ package com.example.memevz;
 
 public class User {
     private String eMail, username;
-    private int userId;
+    private final int userId;
 
     public User(int userId) {
         this.userId = userId;
-    }
-
-    public User(String username, String eMail) {
-        this.eMail = eMail;
-        this.username = username;
     }
 
     public String geteMail() {
@@ -31,10 +26,6 @@ public class User {
 
     public int getUserId() {
         return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public boolean changeCredentials(int userId, String username, String eMail, String password) {

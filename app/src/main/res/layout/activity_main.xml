@@ -23,7 +23,10 @@
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="@color/colorPrimaryDarkDark"
+        android:textColor="@color/white"
+        android:textColorHint="@color/colorPrimaryDark"/>
 
     <EditText
         android:id="@+id/password"
@@ -39,7 +42,10 @@
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/username"
+        android:backgroundTint="@color/colorPrimaryDarkDark"
+        android:textColor="@color/white"
+        android:textColorHint="@color/colorPrimaryDark"/>
 
     <ProgressBar
         android:layout_width="wrap_content"
@@ -47,7 +53,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></ProgressBar>
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="invisible"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -61,7 +68,7 @@
         app:layout_constraintHorizontal_bias="0.111"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
-        android:onClick="register"></TextView>
+        android:onClick="register"/>
 
     <Button
         android:id="@+id/login"

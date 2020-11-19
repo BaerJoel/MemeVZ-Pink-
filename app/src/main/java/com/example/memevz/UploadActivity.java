@@ -11,7 +11,7 @@ import android.widget.ImageButton;
 public class UploadActivity extends AppCompatActivity {
 
     private ImageButton btnHome, btnUpload, btnProfile;
-    private Image image;
+    private Meme image;
     private User user;
 
     @Override
