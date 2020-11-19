@@ -16,8 +16,11 @@
     <color name="blue">#0000FF</color>
     <color name="navy">#000080</color>
     <color name="black">#000000</color>
+    <color name="colorPrimaryLightLight">#ff6bab</color>
+    <color name="colorPrimaryLight">#ff368d</color>
     <color name="colorPrimary">#e20062</color>
     <color name="colorPrimaryDark">#ba0051</color>
     <color name="colorPrimaryDarkDark">#a10046</color>
+    <color name="colorPrimaryDarkDarkDark">#800037</color>
     <color name="colorAccent">#ffff</color>
 </resources>

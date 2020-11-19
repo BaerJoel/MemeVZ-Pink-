@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 private Button btn;
 private TextView register;
 private User user;
+private StartUp startUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,4 +46,5 @@ private User user;
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
+
 }

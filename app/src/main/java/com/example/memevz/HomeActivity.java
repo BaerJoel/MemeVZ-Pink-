@@ -17,6 +17,7 @@ public class HomeActivity extends AppCompatActivity {
     private ImageButton btnHome, btnProfile, btnUpload, like, dislike;
     private ImageView memeView;
     private Image meme;
+    private User user;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -125,6 +126,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private void openUploadActivity() {
         Intent intent = new Intent(this, UploadActivity.class);
+        intent.putExtra("userId", user.getUserId());
+        intent.putExtra("userName", user.getUsername());
         startActivity(intent);
     }
 

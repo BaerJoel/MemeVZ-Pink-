@@ -4,6 +4,15 @@ public class User {
     private String eMail, username;
     private int userId;
 
+    public User(int userId) {
+        this.userId = userId;
+    }
+
+    public User(String username, String eMail) {
+        this.eMail = eMail;
+        this.username = username;
+    }
+
     public String geteMail() {
         return eMail;
     }

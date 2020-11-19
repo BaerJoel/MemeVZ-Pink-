@@ -59,6 +59,7 @@
                         android:layout_marginTop="20dp"
                         android:id="@+id/dislike_button"
                         android:src="@drawable/dislike"
+                        android:background="@drawable/rounded_corner"
                         />
 
                     <ImageButton
