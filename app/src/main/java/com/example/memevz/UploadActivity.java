@@ -61,15 +61,15 @@ public class UploadActivity extends AppCompatActivity {
     private void openProfileActivity() {
         Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     private void openUploadActivity() {
-        Intent intent = new Intent(this, UploadActivity.class);
-        startActivity(intent);
     }
 
     private void openHomeActivity() {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

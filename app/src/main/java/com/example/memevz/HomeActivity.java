@@ -2,12 +2,14 @@ package com.example.memevz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -88,26 +90,28 @@ public class HomeActivity extends AppCompatActivity {
 
 
     private void like() {
-        if(like.getTag() == "dislike") {
-            like.setImageResource(R.drawable.like);
-            like.setTag("like");
-        }
-        else {
-            like.setImageResource(R.drawable.dislike);
-            like.setTag("dislike");
-        }
+        ObjectAnimator animation = ObjectAnimator.ofFloat(memeView, "translationX", 1500f);
+        animation.setDuration(100);
+        animation.start();
+        memeView.animate().alpha(1f).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        memeView.setX(0);
+                    }
+        }).start();
     }
 
 
     private void dislike() {
-        if(dislike.getTag() == "like") {
-            dislike.setImageResource(R.drawable.dislike);
-            dislike.setTag("dislike");
-        }
-        else {
-            dislike.setImageResource(R.drawable.like);
-            dislike.setTag("like");
-        }
+        ObjectAnimator animation = ObjectAnimator.ofFloat(memeView, "translationX", -1500f);
+        animation.setDuration(130);
+        animation.start();
+        memeView.animate().alpha(1f).withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                memeView.setX(0);
+            }
+        }).start();
     }
 
     private void setNavigationBarColor() {
@@ -122,6 +126,7 @@ public class HomeActivity extends AppCompatActivity {
     private void openProfileActivity() {
         Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     private void openUploadActivity() {
@@ -129,10 +134,9 @@ public class HomeActivity extends AppCompatActivity {
         /*intent.putExtra("userId", user.getUserId());
         intent.putExtra("userName", user.getUsername());*/
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     private void openHomeActivity() {
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
     }
 }

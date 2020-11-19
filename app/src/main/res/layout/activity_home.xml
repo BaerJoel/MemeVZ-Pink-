@@ -32,6 +32,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/main"
                 android:layout_above="@id/nav_bar"
+                android:background="@color/colorPrimary"
                 >
 
                 <RelativeLayout
@@ -43,13 +44,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:src="@drawable/memmot"
-                        android:id="@+id/image"
-                        android:background="@color/colorPrimary"/>
+                        android:id="@+id/image"/>
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:background="@color/colorPrimary"
                     android:id="@+id/button_area"
                     android:layout_alignParentBottom="true">
                     <ImageButton
