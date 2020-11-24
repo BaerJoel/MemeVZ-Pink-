@@ -1,24 +1,47 @@
 package com.example.memevz;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private ImageButton btnHome, btnUpload, btnProfile;
+    private ImageButton btnHome, btnUpload, btnProfile, editProfile;
     private User user;
+    private TextView username, email;
+    private List<Image> memes = new ArrayList<>();
+    private List likes = new ArrayList<>();
+    private List dislikes = new ArrayList<>();
+    private LinearLayout imgContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         setContentView(R.layout.activity_profile);
+
+        //assign profile elements
+        imgContainer = (LinearLayout)findViewById(R.id.profile_picture_container);
+        editProfile = (ImageButton) findViewById(R.id.profile_edit_button);
+
+        //edit onClick
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                insertImages();
+            }
+        });
 
         //assign the NavigationBar Buttons
         btnHome = (ImageButton)findViewById(R.id.btn_nav_home);
@@ -48,6 +71,31 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void insertImages() {
+        for (int i = 0; i<3; i++) {
+            LinearLayout ll = new LinearLayout(this);
+            ll.setOrientation(LinearLayout.HORIZONTAL);
+            LinearLayout.LayoutParams lpLayout = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+            ImageView img = new ImageView(this);
+            img.setImageDrawable(getDrawable(R.drawable.memmot));
+            LinearLayout.LayoutParams lpImg = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+            TextView text = new TextView(this);
+            text.setText("likes: 50\ndislikes: 12");
+            text.setTextSize(20);
+            LinearLayout.LayoutParams lpText = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            lpText.setMarginStart(20);
+            lpText.gravity = Gravity.CENTER_VERTICAL;
+
+            ll.addView(img, lpImg);
+            ll.addView(text, lpText);
+            imgContainer.addView(ll, lpLayout);
+            img.getLayoutParams().height = 700;
+            img.getLayoutParams().width = 700;
+        }
     }
 
     private void setNavigationBarColor() {
