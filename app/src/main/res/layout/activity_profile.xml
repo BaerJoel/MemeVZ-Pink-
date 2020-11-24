@@ -32,12 +32,78 @@
                 android:layout_above="@id/nav_bar"
                 android:background="@color/colorPrimary">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="profile Page"
-                    android:textColor="@color/white"
-                    android:textSize="50dp"></TextView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="30dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="180dp"
+                            android:layout_height="wrap_content"
+                            android:text="Username"
+                            android:textSize="25sp"
+                            android:textStyle="bold"
+                            android:id="@+id/profile_username_title"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="fabian_hpk"
+                            android:textSize="25sp"
+                            android:id="@+id/profile_username"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="180dp"
+                            android:layout_height="wrap_content"
+                            android:text="E-Mail"
+                            android:textSize="25sp"
+                            android:textStyle="bold"
+                            android:id="@+id/profile_email_title"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="fabian.hepke@googlemail.com"
+                            android:textSize="25sp"
+                            android:id="@+id/profile_email"/>
+                    </LinearLayout>
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/edit"
+                        android:padding="10dp"
+                        android:id="@+id/profile_edit_button"
+                        android:background="@color/colorPrimaryDarkDark"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Pictures:"
+                        android:layout_marginTop="15dp"
+                        android:textSize="25sp"
+                        android:id="@+id/profile_pictures_title"/>
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scrollbarSize="0dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:id="@+id/profile_picture_container">
+
+                    </LinearLayout>
+                    </ScrollView>
+                    </LinearLayout>
 
 
 
@@ -49,7 +115,7 @@
                 android:background="@color/colorPrimary"
                 android:id="@+id/nav_bar"
                 >
-                <include layout="@layout/activity_bottom_navigation"></include>
+                <include layout="@layout/activity_bottom_navigation" />
             </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
