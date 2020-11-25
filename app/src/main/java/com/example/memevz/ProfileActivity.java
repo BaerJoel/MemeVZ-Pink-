@@ -39,10 +39,10 @@ public class ProfileActivity extends AppCompatActivity {
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                insertImages();
+                openEditProfileActivity();
             }
         });
-
+        insertImages();
         //assign the NavigationBar Buttons
         btnHome = (ImageButton)findViewById(R.id.btn_nav_home);
         btnUpload = (ImageButton)findViewById(R.id.btn_nav_upload);
@@ -74,7 +74,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void insertImages() {
-        for (int i = 0; i<3; i++) {
+        for (int i = 0; i<30; i++) {
             LinearLayout ll = new LinearLayout(this);
             ll.setOrientation(LinearLayout.HORIZONTAL);
             LinearLayout.LayoutParams lpLayout = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -107,6 +107,11 @@ public class ProfileActivity extends AppCompatActivity {
         btnProfile.setBackgroundColor(Color.parseColor("#a10046"));
     }
 
+    private void openEditProfileActivity() {
+        Intent intent = new Intent(this, EditProfileActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
 
     private void openProfileActivity() {
     }
@@ -114,12 +119,12 @@ public class ProfileActivity extends AppCompatActivity {
     private void openUploadActivity() {
         Intent intent = new Intent(this, UploadActivity.class);
         startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        overridePendingTransition(0,0);
     }
 
     private void openHomeActivity() {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        overridePendingTransition(0,0);
     }
 }

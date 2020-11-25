@@ -97,7 +97,7 @@ public class UploadActivity extends AppCompatActivity {
     }
 
 
-            private void setNavigationBarColor() {
+    private void setNavigationBarColor() {
         btnHome.setImageResource(R.drawable.home);
         btnHome.setBackgroundColor(Color.parseColor("#ba0051"));
         btnUpload.setImageResource(R.drawable.settedupload);
@@ -109,7 +109,7 @@ public class UploadActivity extends AppCompatActivity {
     private void openProfileActivity() {
         Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        overridePendingTransition(0,0);
     }
 
     private void openUploadActivity() {
@@ -118,6 +118,6 @@ public class UploadActivity extends AppCompatActivity {
     private void openHomeActivity() {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        overridePendingTransition(0,0);
     }
 }
