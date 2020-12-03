@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -32,16 +33,32 @@ public class HomeActivity extends AppCompatActivity {
 
 
         //(dis)like onClick Events
-        like.setOnClickListener(new View.OnClickListener() {
+        like.setOnTouchListener(new View.OnTouchListener() {
+
             @Override
-            public void onClick(View v) {
-                like();
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    like.setImageResource(R.drawable.like5);
+                }
+                else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    like.setImageResource(R.drawable.like3);
+                    like();
+                }
+                return false;
             }
         });
-        dislike.setOnClickListener(new View.OnClickListener() {
+        dislike.setOnTouchListener(new View.OnTouchListener() {
+
             @Override
-            public void onClick(View v) {
-                dislike();
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    dislike.setImageResource(R.drawable.dislike5);
+                }
+                else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    dislike.setImageResource(R.drawable.dislike3);
+                    dislike();
+                }
+                return false;
             }
         });
 
