@@ -52,9 +52,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/new_username"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/colorPrimaryDarkDarkDark"
                 android:textColor="@color/white"
-                android:textColorHint="@color/white"/>
+                android:textColorHint="@color/colorPrimaryDark"/>
             <EditText
                 android:id="@+id/new_email"
                 android:layout_width="match_parent"
@@ -69,9 +69,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/new_username"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/colorPrimaryDarkDarkDark"
                 android:textColor="@color/white"
-                android:textColorHint="@color/white"/>
+                android:textColorHint="@color/colorPrimaryDark"/>
             <EditText
                 android:id="@+id/new_password"
                 android:inputType="textPassword"
@@ -87,9 +87,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/new_username"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/colorPrimaryDarkDarkDark"
                 android:textColor="@color/white"
-                android:textColorHint="@color/white"/>
+                android:textColorHint="@color/colorPrimaryDark"/>
             <EditText
                 android:id="@+id/new_password_repeat"
                 android:inputType="textPassword"
@@ -105,9 +105,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/new_username"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/colorPrimaryDarkDarkDark"
                 android:textColor="@color/white"
-                android:textColorHint="@color/white"/>
+                android:textColorHint="@color/colorPrimaryDark"/>
             <EditText
                 android:id="@+id/old_password"
                 android:inputType="textPassword"
@@ -123,9 +123,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/new_username"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/colorPrimaryDarkDarkDark"
                 android:textColor="@color/white"
-                android:textColorHint="@color/white"/>
+                android:textColorHint="@color/colorPrimaryDark"/>
 
             <Button
                 android:layout_width="wrap_content"
