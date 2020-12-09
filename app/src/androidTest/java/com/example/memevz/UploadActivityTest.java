@@ -31,13 +31,13 @@ import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class EditProfileActivityTest {
+public class UploadActivityTest {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void editProfileActivityTest() {
+    public void uploadActivityTest() {
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.username),
                         childAtPosition(
@@ -58,7 +58,7 @@ public class EditProfileActivityTest {
                                                 0)),
                                 2),
                         isDisplayed()));
-        appCompatEditText2.perform(replaceText("passwort"), closeSoftKeyboard());
+        appCompatEditText2.perform(replaceText("password"), closeSoftKeyboard());
         SystemClock.sleep(500);
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.login), withText("Sign in"),
@@ -72,92 +72,27 @@ public class EditProfileActivityTest {
         appCompatButton.perform(click());
         SystemClock.sleep(500);
         ViewInteraction appCompatImageButton = onView(
-                allOf(withId(R.id.btn_nav_profile),
+                allOf(withId(R.id.btn_nav_upload),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("androidx.constraintlayout.widget.ConstraintLayout")),
                                         0),
-                                2),
-                        isDisplayed()));
-        appCompatImageButton.perform(click());
-        appCompatImageButton.perform(click());
-        SystemClock.sleep(500);
-
-        ViewInteraction appCompatImageButton2 = onView(
-                allOf(withId(R.id.profile_edit_button),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.main),
-                                        0),
-                                2),
-                        isDisplayed()));
-        appCompatImageButton2.perform(click());
-        SystemClock.sleep(500);
-        ViewInteraction appCompatEditText5 = onView(
-                allOf(withId(R.id.password),
-                        childAtPosition(
-                                allOf(withId(R.id.main),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.RelativeLayout")),
-                                                1)),
                                 1),
                         isDisplayed()));
-        appCompatEditText5.perform(replaceText("fabian.hepke"), closeSoftKeyboard());
-        SystemClock.sleep(500);
-        ViewInteraction appCompatEditText6 = onView(
-                allOf(withId(R.id.new_email),
-                        childAtPosition(
-                                allOf(withId(R.id.main),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.RelativeLayout")),
-                                                1)),
-                                2),
-                        isDisplayed()));
-        appCompatEditText6.perform(replaceText("fabian@hepke.de"), closeSoftKeyboard());
-        SystemClock.sleep(500);
-        ViewInteraction appCompatEditText7 = onView(
-                allOf(withId(R.id.new_password),
-                        childAtPosition(
-                                allOf(withId(R.id.main),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.RelativeLayout")),
-                                                1)),
-                                3),
-                        isDisplayed()));
-        appCompatEditText7.perform(replaceText("newpassword"), closeSoftKeyboard());
-        SystemClock.sleep(500);
-        ViewInteraction appCompatEditText8 = onView(
-                allOf(withId(R.id.new_password_repeat),
-                        childAtPosition(
-                                allOf(withId(R.id.main),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.RelativeLayout")),
-                                                1)),
-                                4),
-                        isDisplayed()));
-        appCompatEditText8.perform(replaceText("newpassword"), closeSoftKeyboard());
-        SystemClock.sleep(500);
-        ViewInteraction appCompatEditText9 = onView(
-                allOf(withId(R.id.old_password),
-                        childAtPosition(
-                                allOf(withId(R.id.main),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.RelativeLayout")),
-                                                1)),
-                                5),
-                        isDisplayed()));
-        appCompatEditText9.perform(replaceText("oldpassword"), closeSoftKeyboard());
+        appCompatImageButton.perform(click());
+        appCompatImageButton.perform(click());
         SystemClock.sleep(500);
         ViewInteraction appCompatButton2 = onView(
-                allOf(withId(R.id.btn_save_changes), withText("Save Changes"),
+                allOf(withId(R.id.choose_img_btn), withText("Choos Picture"),
                         childAtPosition(
-                                allOf(withId(R.id.main),
+                                allOf(withId(R.id.upload_btn_area),
                                         childAtPosition(
-                                                withClassName(is("android.widget.RelativeLayout")),
+                                                withId(R.id.main),
                                                 1)),
-                                6),
+                                0),
                         isDisplayed()));
         appCompatButton2.perform(click());
+
     }
 
     private static Matcher<View> childAtPosition(

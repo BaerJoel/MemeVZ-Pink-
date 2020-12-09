@@ -1,6 +1,7 @@
 package com.example.memevz;
 
 
+import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -28,13 +29,13 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class MainActivityTest {
+public class LoginActivityTest {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void mainActivityTest() {
+    public void mainActivityTest2() {
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.username),
                         childAtPosition(
@@ -42,10 +43,10 @@ public class MainActivityTest {
                                         childAtPosition(
                                                 withId(android.R.id.content),
                                                 0)),
-                                0),
+                                1),
                         isDisplayed()));
-        appCompatEditText.perform(replaceText("fabian@hepke.de"), closeSoftKeyboard());
-
+        appCompatEditText.perform(replaceText("fabian.hepke@googlemail.com"), closeSoftKeyboard());
+        SystemClock.sleep(500);
         ViewInteraction appCompatEditText2 = onView(
                 allOf(withId(R.id.password),
                         childAtPosition(
@@ -53,10 +54,10 @@ public class MainActivityTest {
                                         childAtPosition(
                                                 withId(android.R.id.content),
                                                 0)),
-                                1),
+                                2),
                         isDisplayed()));
         appCompatEditText2.perform(replaceText("password"), closeSoftKeyboard());
-
+        SystemClock.sleep(500);
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.login), withText("Sign in"),
                         childAtPosition(
@@ -64,7 +65,7 @@ public class MainActivityTest {
                                         childAtPosition(
                                                 withId(android.R.id.content),
                                                 0)),
-                                4),
+                                5),
                         isDisplayed()));
         appCompatButton.perform(click());
     }
