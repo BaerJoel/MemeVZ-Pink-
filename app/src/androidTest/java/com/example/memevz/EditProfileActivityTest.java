@@ -80,7 +80,6 @@ public class EditProfileActivityTest {
                                 2),
                         isDisplayed()));
         appCompatImageButton.perform(click());
-        appCompatImageButton.perform(click());
         SystemClock.sleep(500);
 
         ViewInteraction appCompatImageButton2 = onView(
