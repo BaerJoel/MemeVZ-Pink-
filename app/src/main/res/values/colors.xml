@@ -23,4 +23,5 @@
     <color name="colorPrimaryDarkDark">#a10046</color>
     <color name="colorPrimaryDarkDarkDark">#800037</color>
     <color name="colorAccent">#ffff</color>
+    <color name="mtrl_textinput_default_box_stroke_color" override="true">#fff</color>
 </resources>
