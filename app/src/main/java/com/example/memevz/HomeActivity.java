@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class HomeActivity extends AppCompatActivity {
 
+    private int count = 0;
+
     private ImageButton btnHome, btnProfile, btnUpload, like, dislike;
     private ImageView memeView;
     private Meme meme;
@@ -103,6 +105,16 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    private void insertImage() {
+        int[] memes = new int[]{R.drawable.memevzmeme1, R.drawable.memevzmeme2, R.drawable.memevzmeme3, R.drawable.memevzmeme4};
+        if (count < memes.length) {
+            memeView.setImageResource(memes[count]);
+            count++;
+        }
+        else {
+            memeView.setImageResource(R.drawable.nomemes);
+        }
+    }
 
     private void like() {
         ObjectAnimator animation = ObjectAnimator.ofFloat(memeView, "translationX", 1500f);
@@ -111,6 +123,7 @@ public class HomeActivity extends AppCompatActivity {
         memeView.animate().alpha(1f).withEndAction(new Runnable() {
                     @Override
                     public void run() {
+                        insertImage();
                         memeView.setX(0);
                     }
         }).start();
@@ -124,6 +137,7 @@ public class HomeActivity extends AppCompatActivity {
         memeView.animate().alpha(1f).withEndAction(new Runnable() {
             @Override
             public void run() {
+                insertImage();
                 memeView.setX(0);
             }
         }).start();
