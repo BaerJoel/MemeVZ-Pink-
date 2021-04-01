@@ -50,7 +50,7 @@ public class SwipeLikeActivityTest {
                                                 0)),
                                 1),
                         isDisplayed()));
-        appCompatEditText.perform(replaceText("f"), closeSoftKeyboard());
+        appCompatEditText.perform(replaceText("fabian.hepke@googlemail.com"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText2 = onView(
                 allOf(withId(R.id.password),
@@ -61,7 +61,7 @@ public class SwipeLikeActivityTest {
                                                 0)),
                                 2),
                         isDisplayed()));
-        appCompatEditText2.perform(replaceText("p"), closeSoftKeyboard());
+        appCompatEditText2.perform(replaceText("password"), closeSoftKeyboard());
         SystemClock.sleep(500);
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.login), withText("Sign in"),

@@ -80,7 +80,6 @@ public class UploadActivityTest {
                                 1),
                         isDisplayed()));
         appCompatImageButton.perform(click());
-        appCompatImageButton.perform(click());
         SystemClock.sleep(500);
         ViewInteraction appCompatButton2 = onView(
                 allOf(withId(R.id.choose_img_btn), withText("Choos Picture"),
