@@ -21,6 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:transitionName="logo"
         app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -39,6 +40,7 @@
         android:hint="@string/prompt_email"
         app:boxBackgroundColor="@color/colorPrimaryDark"
         android:textColorHint="@color/white"
+        android:transitionName="mail"
         app:layout_constraintTop_toBottomOf="@id/logo"
         >
 
@@ -47,6 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:singleLine="true"
+            android:inputType="textEmailAddress"
             android:textColor="@color/white"
             />
     </com.google.android.material.textfield.TextInputLayout>
@@ -88,13 +91,17 @@
         app:layout_constraintTop_toBottomOf="@+id/username_layout"
         android:hint="@string/prompt_password"
         app:boxBackgroundColor="@color/colorPrimaryDark"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/white"
         android:textColorHint="@color/white"
+        android:transitionName="password"
         >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textPassword"
             android:singleLine="true"
             android:textColor="@color/white"
             />
@@ -111,9 +118,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_layout"
-        android:hint="@string/prompt_password"
+        android:hint="@string/confirm_password"
         app:boxBackgroundColor="@color/colorPrimaryDark"
         android:textColorHint="@color/white"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/white"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -121,6 +130,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:singleLine="true"
+            android:inputType="textPassword"
             android:textColor="@color/white"
             />
     </com.google.android.material.textfield.TextInputLayout>
@@ -128,14 +138,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:textSize="18dp"
-        android:id="@+id/btn_nav_sign_in"
+        android:id="@+id/change"
         android:text="@string/action_sign_in"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.111"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password2_layout"
+        android:transitionName="change"
         android:onClick="register"/>
 
     <ProgressBar
@@ -155,7 +167,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="48dp"
         android:layout_marginBottom="64dp"
         android:enabled="true"
@@ -163,10 +174,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_nav_sign_in"
+        app:layout_constraintTop_toBottomOf="@+id/change"
         app:layout_constraintVertical_bias="0.2"
         android:onClick="openHome"
         android:background="@drawable/button_shape"
+        android:transitionName="login"
         android:textColor="@color/white"/>
 
     <TextView
@@ -180,6 +192,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:transitionName="slogan"
         app:layout_constraintTop_toBottomOf="@id/login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
