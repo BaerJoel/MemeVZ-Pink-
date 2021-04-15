@@ -1,11 +1,13 @@
 package com.example.memevz;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,33 +15,53 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.database.RoomDB;
+import com.database.UserDB;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
 
     private ImageButton btnHome, btnUpload, btnProfile, editProfile;
-    private User user;
     private TextView username, email;
     private List<Image> memes = new ArrayList<>();
     private List likes = new ArrayList<>();
     private List dislikes = new ArrayList<>();
     private LinearLayout imgContainer;
-
+    private UserDB user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        //getUser
+        RoomDB database = RoomDB.getInstance(this);
+        SharedPreferences s = getSharedPreferences("User", MODE_PRIVATE);
+        user = database.userDao().getUserByID(s.getLong("user_id", 1));
+
+        //load User data
+        TextView username = findViewById(R.id.profile_username);
+        username.setText(user.getUsername());
 
         //assign profile elements
         imgContainer = (LinearLayout)findViewById(R.id.profile_picture_container);
         editProfile = (ImageButton) findViewById(R.id.profile_edit_button);
+        Button logout = findViewById(R.id.btn_logout);
+
 
         //edit onClick
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openEditProfileActivity();
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
             }
         });
         insertImages();
@@ -73,6 +95,14 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
+    private void logout() {
+        SharedPreferences s = getSharedPreferences("User", MODE_PRIVATE);
+        SharedPreferences.Editor se = s.edit();
+        se.putBoolean("isLoggedIn", false).apply();
+        Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
+        startActivity(intent);
+    }
+
     private void insertImages() {
         for (int i = 0; i<30; i++) {
             LinearLayout ll = new LinearLayout(this);
@@ -99,11 +129,8 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void setNavigationBarColor() {
-        btnHome.setImageResource(R.drawable.home);
         btnHome.setBackgroundColor(Color.parseColor("#ba0051"));
-        btnUpload.setImageResource(R.drawable.upload);
         btnUpload.setBackgroundColor(Color.parseColor("#ba0051"));
-        btnProfile.setImageResource(R.drawable.settedprofile);
         btnProfile.setBackgroundColor(Color.parseColor("#a10046"));
     }
 
