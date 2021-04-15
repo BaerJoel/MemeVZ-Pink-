@@ -3,6 +3,7 @@ package com.example.memevz;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -12,6 +13,11 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.database.MemeDB;
+import com.database.RoomDB;
+
+import java.util.List;
+
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -19,8 +25,9 @@ public class HomeActivity extends AppCompatActivity {
 
     private ImageButton btnHome, btnProfile, btnUpload, like, dislike;
     private ImageView memeView;
-    private Meme meme;
+    private MemeDB meme;
     private User user;
+    private RoomDB database;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -28,11 +35,20 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        database = RoomDB.getInstance(this);
         //assign HomeScreen elements
         memeView = (ImageView) findViewById(R.id.image);
+        meme = database.memeDao().getAllMemes().get(0);
+        memeView.setImageBitmap(BitmapFactory.decodeByteArray(database.memeDao().getAllMemes().get(0).getImage(), 0, database.memeDao().getAllMemes().get(0).getImage().length));
+
+        setupLikeOrDislikeActions();
+
+        setupNavigation();
+    }
+
+    private void setupLikeOrDislikeActions() {
         like = (ImageButton)findViewById(R.id.like_button);
         dislike = (ImageButton) findViewById(R.id.dislike_button);
-
 
         //(dis)like onClick Events
         like.setOnTouchListener(new View.OnTouchListener() {
@@ -75,7 +91,9 @@ public class HomeActivity extends AppCompatActivity {
                 dislike();
             }
         });
+    }
 
+    private void setupNavigation() {
         //assign NavigationBar Buttons
         btnHome = (ImageButton)findViewById(R.id.btn_nav_home);
         btnUpload = (ImageButton)findViewById(R.id.btn_nav_upload);
@@ -106,17 +124,27 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void insertImage() {
-        int[] memes = new int[]{R.drawable.memevzmeme1, R.drawable.memevzmeme2, R.drawable.memevzmeme3, R.drawable.memevzmeme4};
-        if (count < memes.length) {
-            memeView.setImageResource(memes[count]);
-            count++;
+        List<MemeDB> memes = database.memeDao().getAllMemes();
+        count++;
+        if (count <= memes.size()-1) {
+            meme = memes.get(count);
+            memeView.setImageBitmap(BitmapFactory.decodeByteArray(meme.getImage(), 0, meme.getImage().length));
         }
         else {
-            memeView.setImageResource(R.drawable.nomemes);
+            meme = null;
+            memeView.setImageDrawable(getResources().getDrawable(R.drawable.nomemes));
         }
+
     }
 
     private void like() {
+        try {
+            meme.setLikes(meme.getLikes() + 1);
+            database.memeDao().updateMeme(meme);
+        }
+        catch (Exception e) {
+
+        }
         ObjectAnimator animation = ObjectAnimator.ofFloat(memeView, "translationX", 1500f);
         animation.setDuration(100);
         animation.start();
@@ -131,6 +159,13 @@ public class HomeActivity extends AppCompatActivity {
 
 
     private void dislike() {
+        try {
+            meme.setDislikes(meme.getDislikes() + 1);
+            database.memeDao().updateMeme(meme);
+        }
+        catch (Exception e) {
+
+        }
         ObjectAnimator animation = ObjectAnimator.ofFloat(memeView, "translationX", -1500f);
         animation.setDuration(130);
         animation.start();
