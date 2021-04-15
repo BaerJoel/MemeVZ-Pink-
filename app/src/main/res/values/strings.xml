@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">MemeVZ</string>
     <string name="prompt_email">Email</string>
+    <string name="prompt_emailusername">Email/Username</string>
     <string name="textUsername">"Username"</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in!</string>
@@ -14,4 +15,5 @@
     <string name="new_password">New password</string>
     <string name="old_password">Old password</string>
     <string name="confirm_password">Confirm password</string>
+    <string name="logout">Log out!</string>
 </resources>
