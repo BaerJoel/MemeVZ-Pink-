@@ -47,25 +47,25 @@
                     android:orientation="horizontal"
                     android:id="@+id/upload_btn_area"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="5dp">
+                    android:layout_marginBottom="15dp">
                     <Button
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Choos Picture"
                         android:layout_weight="0.5"
-                        android:background="@color/colorPrimaryDarkDark"
+                        android:background="@drawable/button_shape"
                         android:textColor="@color/white"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginRight="2dp"
+                        android:layout_marginRight="4dp"
                         android:id="@+id/choose_img_btn"/>
                     <Button
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Upload"
                         android:layout_weight="0.5"
-                        android:background="@color/colorPrimaryDarkDark"
+                        android:background="@drawable/button_shape"
                         android:textColor="@color/white"
-                        android:layout_marginLeft="2dp"
+                        android:layout_marginLeft="4dp"
                         android:layout_marginRight="5dp"
                         android:enabled="false"
                         android:id="@+id/upload_btn"/>
