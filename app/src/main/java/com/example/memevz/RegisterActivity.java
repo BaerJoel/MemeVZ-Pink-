@@ -61,22 +61,24 @@ public class RegisterActivity extends AppCompatActivity {
 
         RoomDB database = RoomDB.getInstance(this);
         database.userDao().insert(user);
-
+        openSignInActivity();
     }
 
     private void openSignInActivity() {
         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
         TextView slogan = findViewById(R.id.slogan);
+        TextView change = findViewById(R.id.change);
         Button login = findViewById(R.id.login);
         ImageView logo = findViewById(R.id.logo);
         TextInputLayout password = findViewById(R.id.password_layout);
         TextInputLayout mail = findViewById(R.id.email_layout);
-        Pair[] pairs = new Pair[5];
+        Pair[] pairs = new Pair[6];
         pairs[0] = new Pair<View, String>((View) login, "login");
         pairs[1] = new Pair<View, String>((View) slogan, "slogan");
         pairs[2] = new Pair<View, String>((View) password, "password");
         pairs[3] = new Pair<View, String>((View) mail, "mail");
         pairs[4] = new Pair<View, String>((View) logo, "logo");
+        pairs[5] = new Pair<View, String>((View) change, "change");
         //pairs[3] = new Pair<View, String>((View) password, "password_layout");
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegisterActivity.this, pairs);
         startActivity(intent, options.toBundle());
