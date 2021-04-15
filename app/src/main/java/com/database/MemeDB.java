@@ -11,8 +11,8 @@ public class MemeDB implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private Long id;
 
-    @ColumnInfo(name = "blob")
-    private String blob;
+    @ColumnInfo(name = "blob", typeAffinity = ColumnInfo.BLOB)
+    private byte[] image;
 
     @ColumnInfo(name = "likes")
     private Long likes;
@@ -22,6 +22,8 @@ public class MemeDB implements Serializable {
 
     @ColumnInfo(name = "uploader")
     private Long uploader_id;
+
+
 
     public Long getUploader_id() {
         return uploader_id;
@@ -37,14 +39,6 @@ public class MemeDB implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getBlob() {
-        return blob;
-    }
-
-    public void setBlob(String blob) {
-        this.blob = blob;
     }
 
     public Long getLikes() {
@@ -63,4 +57,11 @@ public class MemeDB implements Serializable {
         this.dislikes = dislikes;
     }
 
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 }
