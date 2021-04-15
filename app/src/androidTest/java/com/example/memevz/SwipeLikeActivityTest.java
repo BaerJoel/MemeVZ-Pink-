@@ -37,7 +37,7 @@ import static org.hamcrest.Matchers.allOf;
 public class SwipeLikeActivityTest {
 
     @Rule
-    public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
+    public ActivityTestRule<LoginActivity> mActivityTestRule = new ActivityTestRule<>(LoginActivity.class);
 
     @Test
     public void swipeLikeActivityTest() {
