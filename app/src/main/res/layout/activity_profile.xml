@@ -11,14 +11,9 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:id="@+id/logo_top"
-            android:background="@color/colorPrimaryDark">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/memevz"
-                android:id="@+id/logo"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/logo_top">
+            <include layout="@layout/top_logo_layout"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -43,46 +38,63 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="180dp"
-                            android:layout_height="wrap_content"
-                            android:text="Username"
-                            android:textSize="25sp"
-                            android:textStyle="bold"
-                            android:id="@+id/profile_username_title"/>
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="fabian_hpk"
-                            android:textSize="25sp"
-                            android:id="@+id/profile_username"/>
+                            android:text="fabianDerGute"
+                            android:textSize="30sp"
+                            android:id="@+id/profile_username"
+                            android:gravity="center"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
                         android:orientation="horizontal">
                         <TextView
-                            android:layout_width="180dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="E-Mail"
+                            android:text="Score:"
                             android:textSize="25sp"
                             android:textStyle="bold"
+                            android:textColor="@color/white"
                             android:id="@+id/profile_email_title"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="fabian.hepke@googlemail.com"
+                            android:layout_marginStart="10dp"
+                            android:text="540"
                             android:textSize="25sp"
+                            android:textColor="@color/white"
                             android:id="@+id/profile_email"/>
                     </LinearLayout>
-                    <ImageButton
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/edit"
-                        android:padding="10dp"
-                        android:id="@+id/profile_edit_button"
-                        android:background="@color/colorPrimaryDarkDark"/>
+                        android:orientation="horizontal">
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/edit"
+                            android:padding="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:id="@+id/profile_edit_button"
+                            android:background="@drawable/button_shape"/>
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/btn_logout"
+                            android:layout_marginStart="10dp"
+                            android:text="@string/logout"
+                            android:background="@drawable/button_shape"
+                            android:textColor="@color/white"/>
+                    </LinearLayout>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -90,11 +102,12 @@
                         android:text="Pictures:"
                         android:layout_marginTop="15dp"
                         android:textSize="25sp"
+                        android:textColor="@color/white"
                         android:id="@+id/profile_pictures_title"/>
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/colorPrimaryDark"/>
+                        android:background="@color/white"/>
                     <ScrollView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

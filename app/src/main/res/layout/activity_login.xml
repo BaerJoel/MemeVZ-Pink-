@@ -53,6 +53,7 @@
         app:boxBackgroundColor="@color/colorPrimaryDark"
         android:textColorHint="@color/white"
         android:transitionName="mail"
+        app:errorEnabled="true"
         >
 
         <com.google.android.material.textfield.TextInputEditText

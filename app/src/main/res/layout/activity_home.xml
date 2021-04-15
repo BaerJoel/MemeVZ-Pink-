@@ -13,14 +13,9 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:id="@+id/logo_top"
-            android:background="@color/colorPrimaryDark">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/memevz"
-                android:id="@+id/logo"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/logo_top">
+            <include layout="@layout/top_logo_layout"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
