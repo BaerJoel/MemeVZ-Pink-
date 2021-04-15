@@ -53,21 +53,20 @@ private StartUp startUp;
         TextView errors = findViewById(R.id.username_error);
         if (user != null) {
             if (user.getPassword().equals(password.getText().toString())) {
-                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                startActivity(intent);
+                openHomeActivity();
             }
             else {
-                errors.setText("Password does not match the user!");
+                password.setError("Password does not match the user!");
             }
+            SharedPreferences s = getSharedPreferences("User", MODE_PRIVATE);
+            SharedPreferences.Editor se = s.edit();
+            se.putLong("user_id", user.getId()).apply();
+            se.putBoolean("isLoggedIn", true).apply();
         }
         else {
-            errors.setText("This user does not exist!");
+            mail.setError("This user does not exist!");
         }
-        SharedPreferences s = getSharedPreferences("User", MODE_PRIVATE);
-        SharedPreferences.Editor se = s.edit();
-        se.putLong("user_id", user.getId()).apply();
-        se.putBoolean("isLoggedIn", true).apply();
-        openHomeActivity();
+        findViewById(R.id.progress).setVisibility(View.INVISIBLE);
     }
 
     private void openRegisterActivity() {
