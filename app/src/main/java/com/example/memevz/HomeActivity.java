@@ -144,11 +144,8 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void setNavigationBarColor() {
-        btnHome.setImageResource(R.drawable.settedhome);
         btnHome.setBackgroundColor(Color.parseColor("#a10046"));
-        btnUpload.setImageResource(R.drawable.upload);
         btnUpload.setBackgroundColor(Color.parseColor("#ba0051"));
-        btnProfile.setImageResource(R.drawable.profile);
         btnProfile.setBackgroundColor(Color.parseColor("#ba0051"));
     }
 
