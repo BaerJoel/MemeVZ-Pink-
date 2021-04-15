@@ -1,6 +1,7 @@
 package com.example.memevz;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
@@ -13,6 +14,11 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.database.MemeDB;
+import com.database.RoomDB;
+import com.database.UserDB;
+
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class UploadActivity extends AppCompatActivity {
@@ -21,13 +27,19 @@ public class UploadActivity extends AppCompatActivity {
     private Button upload, chooseBtn;
     private ImageView imageView;
     private Meme meme;
-    private User user;
+    private UserDB user;
     private Uri imageUri;
+    private byte[] bArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
+
+        //get User
+        RoomDB database = RoomDB.getInstance(this);
+        SharedPreferences s = getSharedPreferences("User", MODE_PRIVATE);
+        user = database.userDao().getUserByID(s.getLong("user_id", 1));
 
         //assign Upload Elements
         chooseBtn = (Button)findViewById(R.id.choose_img_btn);
@@ -39,6 +51,12 @@ public class UploadActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 selectImage();
+            }
+        });
+        upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadMeme();
             }
         });
 
@@ -71,6 +89,22 @@ public class UploadActivity extends AppCompatActivity {
         });
     }
 
+    private void uploadMeme() {
+        try {
+            RoomDB database = RoomDB.getInstance(this);
+            MemeDB meme = new MemeDB();
+            meme.setImage(bArray);
+            meme.setDislikes(new Long(0));
+            meme.setLikes(new Long(0));
+            meme.setUploader_id(user.getId());
+            database.memeDao().addMeme(meme);
+            imageView.setImageDrawable(getResources().getDrawable(R.drawable.successful));
+        }
+        catch (Exception e) {
+            imageView.setImageDrawable(getResources().getDrawable(R.drawable.notsuccessful));
+        }
+    }
+
     private void selectImage() {
         Intent gallery = new Intent();
         gallery.setType("image/*");
@@ -90,6 +124,10 @@ public class UploadActivity extends AppCompatActivity {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
                 imageView.setImageBitmap(bitmap);
                 btnUpload.setEnabled(true);
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 50, bos);
+                bArray = bos.toByteArray();
+                upload.setEnabled(true);
             } catch (IOException e) {
                 e.printStackTrace();
             }
