@@ -1,5 +1,6 @@
 package com.example.memevz;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.database.MemeDB;
@@ -115,8 +117,8 @@ public class ProfileActivity extends AppCompatActivity {
     private void insertImages() {
         List<MemeDB> myMemes = database.memeDao().getAllMemesFromUser(user.getId());
         for (int i = 0; i<myMemes.size(); i++) {
-            MemeDB meme = myMemes.get(i);
-            LinearLayout ll = new LinearLayout(this);
+            final MemeDB meme = myMemes.get(i);
+            final LinearLayout ll = new LinearLayout(this);
             ll.setOrientation(LinearLayout.HORIZONTAL);
             LinearLayout.LayoutParams lpLayout = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
@@ -131,8 +133,42 @@ public class ProfileActivity extends AppCompatActivity {
             lpText.setMarginStart(20);
             lpText.gravity = Gravity.CENTER_VERTICAL;
 
+            final ImageButton delete = new ImageButton(this);
+            delete.setImageDrawable(getResources().getDrawable(R.drawable.ic_delete));
+            delete.setBackground(getResources().getDrawable(R.drawable.button_shape));
+            LinearLayout.LayoutParams lpdelete = new LinearLayout.LayoutParams(150, 150);
+            lpdelete.setMarginStart(40);
+            lpdelete.gravity = Gravity.CENTER_VERTICAL;
+
+            delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
+                    builder.setTitle("Are you sure you want to delete this meme?");
+                    builder.setPositiveButton("Delete!", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            imgContainer.removeView(ll);
+                            database.memeDao().deleteMeme(meme);
+                        }
+                    });
+                    builder.setNegativeButton("No!", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                    alert.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.black));
+                    alert.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.black));
+                }
+            });
+
+
             ll.addView(img, lpImg);
             ll.addView(text, lpText);
+            ll.addView(delete, lpdelete);
             imgContainer.addView(ll, lpLayout);
             img.getLayoutParams().height = 700;
             img.getLayoutParams().width = 700;
