@@ -38,8 +38,13 @@ public class HomeActivity extends AppCompatActivity {
         database = RoomDB.getInstance(this);
         //assign HomeScreen elements
         memeView = (ImageView) findViewById(R.id.image);
-        meme = database.memeDao().getAllMemes().get(0);
-        memeView.setImageBitmap(BitmapFactory.decodeByteArray(database.memeDao().getAllMemes().get(0).getImage(), 0, database.memeDao().getAllMemes().get(0).getImage().length));
+        try {
+            meme = database.memeDao().getAllMemes().get(0);
+            memeView.setImageBitmap(BitmapFactory.decodeByteArray(database.memeDao().getAllMemes().get(0).getImage(),0, database.memeDao().getAllMemes().get(0).getImage().length));
+        }
+        catch (Exception e) {
+            memeView.setImageDrawable(getResources().getDrawable(R.drawable.nomemes));
+        }
 
         setupLikeOrDislikeActions();
 

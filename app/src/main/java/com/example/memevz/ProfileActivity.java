@@ -102,8 +102,15 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void inserSCore() {
-        TextView score = findViewById(R.id.profile_score);
-        score.setText(database.memeDao().getUserScore(user.getId()).toString());
+        TextView scoreView = findViewById(R.id.profile_score);
+        String score;
+        try {
+            score = database.memeDao().getUserScore(user.getId()).toString();
+        }
+        catch (Exception e) {
+             score = "0";
+        }
+        scoreView.setText(score);
     }
 
     private void logout() {
