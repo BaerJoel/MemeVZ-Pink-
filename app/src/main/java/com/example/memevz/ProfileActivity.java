@@ -2,8 +2,8 @@ package com.example.memevz;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.database.MemeDB;
 import com.database.RoomDB;
 import com.database.UserDB;
 
@@ -25,17 +26,19 @@ public class ProfileActivity extends AppCompatActivity {
 
     private ImageButton btnHome, btnUpload, btnProfile, editProfile;
     private TextView username, email;
-    private List<Image> memes = new ArrayList<>();
     private List likes = new ArrayList<>();
     private List dislikes = new ArrayList<>();
     private LinearLayout imgContainer;
     private UserDB user;
+    private RoomDB database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+
+        database = RoomDB.getInstance(this);
         //getUser
         RoomDB database = RoomDB.getInstance(this);
         SharedPreferences s = getSharedPreferences("User", MODE_PRIVATE);
@@ -65,6 +68,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
         insertImages();
+        inserSCore();
         //assign the NavigationBar Buttons
         btnHome = (ImageButton)findViewById(R.id.btn_nav_home);
         btnUpload = (ImageButton)findViewById(R.id.btn_nav_upload);
@@ -95,6 +99,11 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
+    private void inserSCore() {
+        TextView score = findViewById(R.id.profile_score);
+        score.setText(database.memeDao().getUserScore(user.getId()).toString());
+    }
+
     private void logout() {
         SharedPreferences s = getSharedPreferences("User", MODE_PRIVATE);
         SharedPreferences.Editor se = s.edit();
@@ -104,17 +113,19 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void insertImages() {
-        for (int i = 0; i<30; i++) {
+        List<MemeDB> myMemes = database.memeDao().getAllMemesFromUser(user.getId());
+        for (int i = 0; i<myMemes.size(); i++) {
+            MemeDB meme = myMemes.get(i);
             LinearLayout ll = new LinearLayout(this);
             ll.setOrientation(LinearLayout.HORIZONTAL);
             LinearLayout.LayoutParams lpLayout = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
             ImageView img = new ImageView(this);
-            img.setImageDrawable(getDrawable(R.drawable.memmot));
+            img.setImageBitmap(BitmapFactory.decodeByteArray(meme.getImage(), 0, meme.getImage().length));
             LinearLayout.LayoutParams lpImg = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
             TextView text = new TextView(this);
-            text.setText("likes: 50\ndislikes: 12");
+            text.setText("likes: " + meme.getLikes() + "\ndislikes: " + meme.getDislikes());
             text.setTextSize(20);
             LinearLayout.LayoutParams lpText = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             lpText.setMarginStart(20);
