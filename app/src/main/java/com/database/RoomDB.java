@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {UserDB.class, MemeDB.class}, version = 1, exportSchema = false)
+@Database(entities = {UserDB.class, MemeDB.class, RankingDB.class}, version = 1, exportSchema = false)
 public abstract class RoomDB extends RoomDatabase {
     private static RoomDB database;
     private static String DATABASE_NAME = "db";
@@ -20,6 +20,7 @@ public abstract class RoomDB extends RoomDatabase {
 
     public abstract UserDao userDao();
     public abstract MemeDao memeDao();
+    public abstract RankingDao rankingDao();
 
 
 
