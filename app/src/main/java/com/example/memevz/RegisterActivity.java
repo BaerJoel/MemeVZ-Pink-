@@ -25,12 +25,13 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView signIn;
     private User user;
     public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-
+    private RoomDB database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        database = RoomDB.getInstance(this);
         signIn = (TextView) findViewById(R.id.change);
         btn = (Button) findViewById(R.id.login);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
             user.setMail(mail.getText().toString());
             user.setUsername(username.getText().toString());
             user.setPassword(password1.getText().toString());
-            RoomDB database = RoomDB.getInstance(this);
+
             database.userDao().insert(user);
             openSignInActivity();
         }
@@ -83,11 +84,20 @@ public class RegisterActivity extends AppCompatActivity {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(mail.getText().toString());
         if (mail.getText().toString().equals("")) {
             mail.setError("Please enter an e-mail!");
+            return false;
         }
         else if (!matcher.find()) {
             mail.setError("This is no valid e-mail address");
+            return false;
         }
-        return matcher.find();
+        else {
+            UserDB user = database.userDao().getUser(mail.getText().toString());
+            if (user != null) {
+                mail.setError("User with this e-mail does already exist");
+                return false;
+            }
+            return true;
+        }
     }
     public boolean isUsernameCorrect() {
         TextInputEditText username = findViewById(R.id.username);
@@ -100,6 +110,11 @@ public class RegisterActivity extends AppCompatActivity {
                 return false;
             }
             else {
+                UserDB user = database.userDao().getUser(username.getText().toString());
+                if (user != null) {
+                    username.setError("User with this username does already exist");
+                    return false;
+                }
                 return true;
             }
     }
@@ -110,7 +125,7 @@ public class RegisterActivity extends AppCompatActivity {
             password1.setError("Please enter a password!");
             return false;
         }
-        else if(password1.getText().toString().length() < 3) {
+        else if(password1.getText().toString().length() <= 3) {
             password1.setError("Password must be longer than 3 characters!");
             return false;
         }
