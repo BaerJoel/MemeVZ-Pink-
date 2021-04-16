@@ -3,9 +3,11 @@ package com.example.memevz;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
@@ -14,7 +16,9 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.database.MemeDB;
+import com.database.RankingDB;
 import com.database.RoomDB;
+import com.database.UserDB;
 
 import java.util.List;
 
@@ -26,7 +30,7 @@ public class HomeActivity extends AppCompatActivity {
     private ImageButton btnHome, btnProfile, btnUpload, like, dislike;
     private ImageView memeView;
     private MemeDB meme;
-    private User user;
+    private UserDB user;
     private RoomDB database;
 
     @SuppressLint("ClickableViewAccessibility")
@@ -36,15 +40,12 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         database = RoomDB.getInstance(this);
+
+        SharedPreferences s = getSharedPreferences("User", MODE_PRIVATE);
+        user = database.userDao().getUserByID(s.getLong("user_id", 1));
         //assign HomeScreen elements
         memeView = (ImageView) findViewById(R.id.image);
-        try {
-            meme = database.memeDao().getAllMemes().get(0);
-            memeView.setImageBitmap(BitmapFactory.decodeByteArray(database.memeDao().getAllMemes().get(0).getImage(),0, database.memeDao().getAllMemes().get(0).getImage().length));
-        }
-        catch (Exception e) {
-            memeView.setImageDrawable(getResources().getDrawable(R.drawable.nomemes));
-        }
+        insertImage();
 
         setupLikeOrDislikeActions();
 
@@ -129,9 +130,9 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void insertImage() {
-        List<MemeDB> memes = database.memeDao().getAllMemes();
-        count++;
-        if (count <= memes.size()-1) {
+        List<MemeDB> memes = database.memeDao().getUnseenMemesFromUser(user.getId());
+        if (count < memes.size()) {
+            Log.w("E", "insertImage: " + memes.get(0).getId());
             meme = memes.get(count);
             memeView.setImageBitmap(BitmapFactory.decodeByteArray(meme.getImage(), 0, meme.getImage().length));
         }
@@ -146,6 +147,10 @@ public class HomeActivity extends AppCompatActivity {
         try {
             meme.setLikes(meme.getLikes() + 1);
             database.memeDao().updateMeme(meme);
+            RankingDB ranking = new RankingDB();
+            ranking.setMeme_id(meme.getId());
+            ranking.setUser_id(user.getId());
+            database.rankingDao().addRanking(ranking);
         }
         catch (Exception e) {
 
@@ -167,6 +172,10 @@ public class HomeActivity extends AppCompatActivity {
         try {
             meme.setDislikes(meme.getDislikes() + 1);
             database.memeDao().updateMeme(meme);
+            RankingDB ranking = new RankingDB();
+            ranking.setMeme_id(meme.getId());
+            ranking.setUser_id(user.getId());
+            database.rankingDao().addRanking(ranking);
         }
         catch (Exception e) {
 
