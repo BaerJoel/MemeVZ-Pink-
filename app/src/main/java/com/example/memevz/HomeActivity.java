@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
@@ -132,7 +131,6 @@ public class HomeActivity extends AppCompatActivity {
     private void insertImage() {
         List<MemeDB> memes = database.memeDao().getUnseenMemesFromUser(user.getId());
         if (count < memes.size()) {
-            Log.w("E", "insertImage: " + memes.get(0).getId());
             meme = memes.get(count);
             memeView.setImageBitmap(BitmapFactory.decodeByteArray(meme.getImage(), 0, meme.getImage().length));
         }
