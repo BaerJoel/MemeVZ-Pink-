@@ -53,15 +53,16 @@ private StartUp startUp;
         TextView errors = findViewById(R.id.username_error);
         if (user != null) {
             if (user.getPassword().equals(password.getText().toString())) {
+                SharedPreferences s = getSharedPreferences("User", MODE_PRIVATE);
+                SharedPreferences.Editor se = s.edit();
+                se.putLong("user_id", user.getId()).apply();
+                se.putBoolean("isLoggedIn", true).apply();
                 openHomeActivity();
             }
             else {
                 password.setError("Password does not match the user!");
             }
-            SharedPreferences s = getSharedPreferences("User", MODE_PRIVATE);
-            SharedPreferences.Editor se = s.edit();
-            se.putLong("user_id", user.getId()).apply();
-            se.putBoolean("isLoggedIn", true).apply();
+
         }
         else {
             mail.setError("This user does not exist!");
@@ -91,6 +92,7 @@ private StartUp startUp;
 
     private void openHomeActivity() {
         Intent intent = new Intent(this, HomeActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }

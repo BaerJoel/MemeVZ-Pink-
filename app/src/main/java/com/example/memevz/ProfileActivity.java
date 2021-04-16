@@ -118,6 +118,7 @@ public class ProfileActivity extends AppCompatActivity {
         SharedPreferences.Editor se = s.edit();
         se.putBoolean("isLoggedIn", false).apply();
         Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 
