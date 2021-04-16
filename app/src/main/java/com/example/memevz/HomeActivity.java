@@ -19,8 +19,6 @@ import com.database.RankingDB;
 import com.database.RoomDB;
 import com.database.UserDB;
 
-import java.util.List;
-
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -129,9 +127,8 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void insertImage() {
-        List<MemeDB> memes = database.memeDao().getUnseenMemesFromUser(user.getId());
-        if (count < memes.size()) {
-            meme = memes.get(count);
+        meme = database.memeDao().getUnseenMemeFromUser(user.getId());
+        if (meme != null) {
             memeView.setImageBitmap(BitmapFactory.decodeByteArray(meme.getImage(), 0, meme.getImage().length));
         }
         else {
