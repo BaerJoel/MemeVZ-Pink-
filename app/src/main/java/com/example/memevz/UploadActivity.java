@@ -125,7 +125,7 @@ public class UploadActivity extends AppCompatActivity {
                 imageView.setImageBitmap(bitmap);
                 btnUpload.setEnabled(true);
                 ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 50, bos);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 40, bos);
                 bArray = bos.toByteArray();
                 upload.setEnabled(true);
             } catch (IOException e) {
