@@ -16,11 +16,16 @@ import com.database.UserDB;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private Button btn;
     private TextView signIn;
     private User user;
+    public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,19 +54,81 @@ public class RegisterActivity extends AppCompatActivity {
         TextInputEditText username = findViewById(R.id.username);
         TextInputEditText password1 = findViewById(R.id.password);
         TextInputEditText password2 = findViewById(R.id.password2);
-        if (mail.getText().toString() != "") {
+        if (isInputCorrect()) {
             user.setMail(mail.getText().toString());
-        }
-        if (username.getText().toString() != "") {
             user.setUsername(username.getText().toString());
-        }
-        if ((password1.getText().toString() != "") && (password1.getText().toString().equals(password2.getText().toString()))) {
             user.setPassword(password1.getText().toString());
+            RoomDB database = RoomDB.getInstance(this);
+            database.userDao().insert(user);
+            openSignInActivity();
         }
 
-        RoomDB database = RoomDB.getInstance(this);
-        database.userDao().insert(user);
-        openSignInActivity();
+
+    }
+
+    public boolean isInputCorrect() {
+        boolean mail = isMailCorrect();
+        boolean username = isUsernameCorrect();
+        boolean password = isPasswordCorrect();
+        boolean matchingPasswords = doesPasswordsMatch();
+
+        if ( mail && username && password && matchingPasswords) {
+            return true;
+        }
+        return false;
+    }
+    public boolean isMailCorrect() {
+
+        TextInputEditText mail = findViewById(R.id.email);
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(mail.getText().toString());
+        if (mail.getText().toString().equals("")) {
+            mail.setError("Please enter an e-mail!");
+        }
+        else if (!matcher.find()) {
+            mail.setError("This is no valid e-mail address");
+        }
+        return matcher.find();
+    }
+    public boolean isUsernameCorrect() {
+        TextInputEditText username = findViewById(R.id.username);
+            if (username.getText().toString().equals("")) {
+                username.setError("Please enter an username!");
+                return false;
+            }
+            else if (username.getText().toString().length() < 3) {
+                username.setError("Username must be longer than 3 characters");
+                return false;
+            }
+            else {
+                return true;
+            }
+    }
+    public boolean isPasswordCorrect() {
+        TextInputEditText password1 = findViewById(R.id.password);
+        TextInputEditText password2 = findViewById(R.id.password2);
+        if (password1.getText().toString().equals("")) {
+            password1.setError("Please enter a password!");
+            return false;
+        }
+        else if(password1.getText().toString().length() < 3) {
+            password1.setError("Password must be longer than 3 characters!");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    public boolean doesPasswordsMatch() {
+        TextInputEditText password1 = findViewById(R.id.password);
+        TextInputEditText password2 = findViewById(R.id.password2);
+        if (password1.getText().toString().equals(password2.getText().toString())) {
+            return true;
+        }
+        else {
+            password2.setError("Passwords does not match");
+            return false;
+        }
+
     }
 
     private void openSignInActivity() {
