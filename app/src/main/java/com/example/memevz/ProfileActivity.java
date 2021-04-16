@@ -131,11 +131,14 @@ public class ProfileActivity extends AppCompatActivity {
 
             ImageView img = new ImageView(this);
             img.setImageBitmap(BitmapFactory.decodeByteArray(meme.getImage(), 0, meme.getImage().length));
+            img.setBackground(getResources().getDrawable(R.drawable.button_shape));
+            img.setPadding(5,5,5,5);
             LinearLayout.LayoutParams lpImg = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
             TextView text = new TextView(this);
             text.setText("likes: " + meme.getLikes() + "\ndislikes: " + meme.getDislikes());
             text.setTextSize(20);
+            text.setTextColor(getResources().getColor(R.color.white));
             LinearLayout.LayoutParams lpText = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             lpText.setMarginStart(20);
             lpText.gravity = Gravity.CENTER_VERTICAL;
