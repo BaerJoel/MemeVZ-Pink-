@@ -1,10 +1,24 @@
 package com.example.memevz;
 
 public class User {
-    private String eMail, username;
-    private final int userId;
+    private String eMail, username, password;
+    private int userId;
 
     public User(int userId) {
+        this.userId = userId;
+    }
+    public User() {
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
