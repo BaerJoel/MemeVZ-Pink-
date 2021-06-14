@@ -6,8 +6,10 @@ import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -33,30 +35,27 @@ public class ProfileActivity extends AppCompatActivity {
     private LinearLayout imgContainer;
     private UserDB user;
     private RoomDB database;
+    private Button logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-
         database = RoomDB.getInstance(this);
-        //getUser
-        RoomDB database = RoomDB.getInstance(this);
-        SharedPreferences s = getSharedPreferences("User", MODE_PRIVATE);
-        user = database.userDao().getUserByID(s.getLong("user_id", 1));
 
-        //load User data
-        TextView username = findViewById(R.id.profile_username);
-        username.setText(user.getUsername());
+        getUser();
+        loadUserData();
+        assignProfileElements();
+        createButtonInteraction();
 
-        //assign profile elements
-        imgContainer = (LinearLayout)findViewById(R.id.profile_picture_container);
-        editProfile = (ImageButton) findViewById(R.id.profile_edit_button);
-        Button logout = findViewById(R.id.btn_logout);
+        insertImages();
+        inserScore();
+        assignNavigationBar();
+        setNavigationBarColor();
+        createNavigationInteraction();
+    }
 
-
-        //edit onClick
+    private void createButtonInteraction() {
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,17 +68,9 @@ public class ProfileActivity extends AppCompatActivity {
                 logout();
             }
         });
-        insertImages();
-        inserSCore();
-        //assign the NavigationBar Buttons
-        btnHome = (ImageButton)findViewById(R.id.btn_nav_home);
-        btnUpload = (ImageButton)findViewById(R.id.btn_nav_upload);
-        btnProfile = (ImageButton)findViewById(R.id.btn_nav_profile);
+    }
 
-        //correct the NavigationBar colors
-        setNavigationBarColor();
-
-        //NavigationBar onClick Events
+    private void createNavigationInteraction() {
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,10 +89,32 @@ public class ProfileActivity extends AppCompatActivity {
                 openProfileActivity();
             }
         });
-
     }
 
-    private void inserSCore() {
+    private void assignNavigationBar() {
+        btnHome = (ImageButton)findViewById(R.id.btn_nav_home);
+        btnUpload = (ImageButton)findViewById(R.id.btn_nav_upload);
+        btnProfile = (ImageButton)findViewById(R.id.btn_nav_profile);
+    }
+
+    private void assignProfileElements() {
+        imgContainer = (LinearLayout)findViewById(R.id.profile_picture_container);
+        editProfile = (ImageButton) findViewById(R.id.profile_edit_button);
+        logout = findViewById(R.id.btn_logout);
+    }
+
+    private void loadUserData() {
+        TextView username = findViewById(R.id.profile_username);
+        username.setText(user.getUsername());
+    }
+
+    private void getUser() {
+        RoomDB database = RoomDB.getInstance(this);
+        SharedPreferences s = getSharedPreferences("User", MODE_PRIVATE);
+        user = database.userDao().getUserByID(s.getLong("user_id", 1));
+    }
+
+    private void inserScore() {
         TextView scoreView = findViewById(R.id.profile_score);
         String score;
         try {
@@ -126,15 +139,29 @@ public class ProfileActivity extends AppCompatActivity {
         List<MemeDB> myMemes = database.memeDao().getAllMemesFromUser(user.getId());
         for (int i = 0; i<myMemes.size(); i++) {
             final MemeDB meme = myMemes.get(i);
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+            int width = displayMetrics.widthPixels;
+
             final LinearLayout ll = new LinearLayout(this);
             ll.setOrientation(LinearLayout.HORIZONTAL);
-            LinearLayout.LayoutParams lpLayout = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            LinearLayout.LayoutParams lpLayout = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f);
 
             ImageView img = new ImageView(this);
             img.setImageBitmap(BitmapFactory.decodeByteArray(meme.getImage(), 0, meme.getImage().length));
-            img.setBackground(getResources().getDrawable(R.drawable.button_shape));
             img.setPadding(5,5,5,5);
-            LinearLayout.LayoutParams lpImg = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            LinearLayout.LayoutParams lpImg = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f);
+            img.setLayoutParams(lpImg);
+            img.getLayoutParams().height = 50;
+
+
+            LinearLayout imgCon = new LinearLayout(this);
+            imgCon.setOrientation(LinearLayout.HORIZONTAL);
+            LinearLayout.LayoutParams lpImgCon = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 0.5f);
+            imgCon.setLayoutParams(lpImgCon);
+            imgCon.setBackground(getResources().getDrawable(R.drawable.button_shape));
+            imgCon.addView(img);
+
 
             TextView text = new TextView(this);
             text.setText("likes: " + meme.getLikes() + "\ndislikes: " + meme.getDislikes());
@@ -151,6 +178,13 @@ public class ProfileActivity extends AppCompatActivity {
             lpdelete.setMarginStart(40);
             lpdelete.gravity = Gravity.CENTER_VERTICAL;
 
+            LinearLayout rightCon = new LinearLayout(this);
+            rightCon.setOrientation(LinearLayout.HORIZONTAL);
+            LinearLayout.LayoutParams lpRightCon = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 0.5f);
+            rightCon.setLayoutParams(lpRightCon);
+            rightCon.addView(text, lpText);
+            rightCon.addView(delete, lpdelete);
+
             delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -161,6 +195,9 @@ public class ProfileActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
                             imgContainer.removeView(ll);
                             database.memeDao().deleteMeme(meme);
+                            Intent intent = new Intent(ProfileActivity.this, ProfileActivity.class);
+                            startActivity(intent);
+                            overridePendingTransition(0,0);
                         }
                     });
                     builder.setNegativeButton("No!", new DialogInterface.OnClickListener() {
@@ -177,9 +214,8 @@ public class ProfileActivity extends AppCompatActivity {
             });
 
 
-            ll.addView(img, lpImg);
-            ll.addView(text, lpText);
-            ll.addView(delete, lpdelete);
+            ll.addView(imgCon);
+            ll.addView(rightCon);
             imgContainer.addView(ll, lpLayout);
             img.getLayoutParams().height = 700;
             img.getLayoutParams().width = 700;
