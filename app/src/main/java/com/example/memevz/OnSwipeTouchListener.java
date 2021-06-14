@@ -22,6 +22,8 @@ public class OnSwipeTouchListener implements View.OnTouchListener {
 
         private static final int SWIPE_THRESHOLD = 100;
         private static final int SWIPE_VELOCITY_THRESHOLD = 100;
+        private float diffY;
+        private float diffX;
 
         @Override
         public boolean onDown(MotionEvent e) {
@@ -32,31 +34,43 @@ public class OnSwipeTouchListener implements View.OnTouchListener {
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             boolean result = false;
             try {
-                float diffY = e2.getY() - e1.getY();
-                float diffX = e2.getX() - e1.getX();
-                if (Math.abs(diffX) > Math.abs(diffY)) {
-                    if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-                        if (diffX > 0) {
-                            onSwipeRight();
-                        } else {
-                            onSwipeLeft();
-                        }
-                        result = true;
-                    }
-                }
-                else if (Math.abs(diffY) > SWIPE_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
-                    if (diffY > 0) {
-                        onSwipeBottom();
-                    } else {
-                        onSwipeTop();
-                    }
-                    result = true;
+                diffY = e2.getY() - e1.getY();
+                diffX = e2.getX() - e1.getX();
+                result = checkHorizontal(velocityX, diffX, diffY);
+                if (!result) {
+                    checkVertical(velocityY, diffY);
                 }
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
             return result;
         }
+    }
+
+    private boolean checkVertical(float velocityY, float diffY) {
+        if (Math.abs(diffY) > GestureListener.SWIPE_THRESHOLD && Math.abs(velocityY) > GestureListener.SWIPE_VELOCITY_THRESHOLD) {
+            if (diffY > 0) {
+                onSwipeBottom();
+            } else {
+                onSwipeTop();
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkHorizontal(float velocityX, float diffX, float diffY) {
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+            if (Math.abs(diffX) > GestureListener.SWIPE_THRESHOLD && Math.abs(velocityX) > GestureListener.SWIPE_VELOCITY_THRESHOLD) {
+                if (diffX > 0) {
+                    onSwipeRight();
+                } else {
+                    onSwipeLeft();
+                }
+                return true;
+            }
+        }
+        return false;
     }
 
     public void onSwipeRight() {
