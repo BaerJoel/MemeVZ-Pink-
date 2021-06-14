@@ -26,10 +26,12 @@ public class UploadActivity extends AppCompatActivity {
     private ImageButton btnHome, btnUpload, btnProfile;
     private Button upload, chooseBtn;
     private ImageView imageView;
-    private Meme meme;
+    private Bitmap bitmap;
+    private MemeDB meme = new MemeDB();
     private UserDB user;
     private Uri imageUri;
     private byte[] bArray;
+    private int user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class UploadActivity extends AppCompatActivity {
         RoomDB database = RoomDB.getInstance(this);
         SharedPreferences s = getSharedPreferences("User", MODE_PRIVATE);
         user = database.userDao().getUserByID(s.getLong("user_id", 1));
+        meme.setUploader_id(user.getId());
 
         //assign Upload Elements
         chooseBtn = (Button)findViewById(R.id.choose_img_btn);
@@ -89,6 +92,7 @@ public class UploadActivity extends AppCompatActivity {
         });
     }
 
+
     private void uploadMeme() {
         try {
             RoomDB database = RoomDB.getInstance(this);
@@ -110,7 +114,7 @@ public class UploadActivity extends AppCompatActivity {
         gallery.setType("image/*");
         gallery.setAction(Intent.ACTION_GET_CONTENT);
 
-        startActivityForResult(Intent.createChooser(gallery, "Sellect Picture"), 1);
+        startActivityForResult(Intent.createChooser(gallery, "Select Picture"), 1);
     }
 
     @Override
@@ -127,6 +131,9 @@ public class UploadActivity extends AppCompatActivity {
                 ByteArrayOutputStream bos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 40, bos);
                 bArray = bos.toByteArray();
+                meme.setLikes(Long.valueOf(0));
+                meme.setDislikes(Long.valueOf(0));
+                meme.setImage(bArray);
                 upload.setEnabled(true);
             } catch (IOException e) {
                 e.printStackTrace();
