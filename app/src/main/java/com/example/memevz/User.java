@@ -47,7 +47,7 @@ public class User {
     }
 
     public boolean isPasswordCorrect (String password) {
-        return true;
+        return password.equals(this.password);
     }
 
     public boolean registerUser(String eMail, String username, String password) {
