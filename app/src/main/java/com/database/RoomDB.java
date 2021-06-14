@@ -13,15 +13,17 @@ public abstract class RoomDB extends RoomDatabase {
 
     public synchronized static RoomDB getInstance(Context context) {
         if (database == null) {
-            database = Room.databaseBuilder(context.getApplicationContext(), RoomDB.class, DATABASE_NAME).allowMainThreadQueries().fallbackToDestructiveMigration().build();
+            database = Room.databaseBuilder(context.getApplicationContext(),
+                    RoomDB.class, DATABASE_NAME).allowMainThreadQueries().fallbackToDestructiveMigration().build();
         }
         return database;
     }
 
     public abstract UserDao userDao();
-    public abstract MemeDao memeDao();
-    public abstract RankingDao rankingDao();
 
+    public abstract MemeDao memeDao();
+
+    public abstract RankingDao rankingDao();
 
 
 }
