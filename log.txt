@@ -1,0 +1,255 @@
+adb server is out of date.  killing...
+* daemon started successfully *
+  bash arg: -p
+  bash arg: com.example.memevz
+  bash arg: -v
+  bash arg: 1000
+args: [-p, com.example.memevz, -v, 1000]
+ arg: "-p"
+ arg: "com.example.memevz"
+ arg: "-v"
+ arg: "1000"
+data="com.example.memevz"
+:Monkey: seed=1619941212204 count=1000
+:AllowPackage: com.example.memevz
+:IncludeCategory: android.intent.category.LAUNCHER
+:IncludeCategory: android.intent.category.MONKEY
+// Event percentages:
+//   0: 15.0%
+//   1: 10.0%
+//   2: 2.0%
+//   3: 15.0%
+//   4: -0.0%
+//   5: -0.0%
+//   6: 25.0%
+//   7: 15.0%
+//   8: 2.0%
+//   9: 2.0%
+//   10: 1.0%
+//   11: 13.0%
+:Switch: #Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;launchFlags=0x10200000;component=com.example.memevz/.MainActivity;end
+    // Allowing start of Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.example.memevz/.MainActivity } in package com.example.memevz
+:Sending Touch (ACTION_DOWN): 0:(522.0,555.0)
+:Sending Touch (ACTION_UP): 0:(523.5528,562.8799)
+:Sending Touch (ACTION_DOWN): 0:(1141.0,2085.0)
+:Sending Touch (ACTION_UP): 0:(1146.2014,2081.6658)
+:Sending Trackball (ACTION_MOVE): 0:(-2.0,0.0)
+:Sending Trackball (ACTION_MOVE): 0:(2.0,1.0)
+:Sending Trackball (ACTION_MOVE): 0:(2.0,4.0)
+:Sending Trackball (ACTION_MOVE): 0:(-2.0,2.0)
+:Sending Touch (ACTION_DOWN): 0:(1232.0,359.0)
+:Sending Touch (ACTION_UP): 0:(1230.4797,365.266)
+:Sending Touch (ACTION_DOWN): 0:(1340.0,271.0)
+:Sending Touch (ACTION_UP): 0:(1387.2872,176.94283)
+:Sending Trackball (ACTION_MOVE): 0:(3.0,-1.0)
+    //[calendar_time:2021-04-29 09:56:44.734  system_uptime:84201206]
+    // Sending event #100
+:Sending Trackball (ACTION_MOVE): 0:(-5.0,3.0)
+:Sending Trackball (ACTION_UP): 0:(0.0,0.0)
+:Sending Trackball (ACTION_MOVE): 0:(1.0,4.0)
+:Sending Touch (ACTION_DOWN): 0:(1404.0,519.0)
+:Sending Touch (ACTION_UP): 0:(1357.3021,582.47626)
+:Sending Trackball (ACTION_MOVE): 0:(-2.0,-4.0)
+:Sending Touch (ACTION_DOWN): 0:(1393.0,1006.0)
+:Sending Touch (ACTION_UP): 0:(1341.4552,1029.1781)
+:Sending Trackball (ACTION_MOVE): 0:(0.0,-4.0)
+:Sending Trackball (ACTION_MOVE): 0:(4.0,1.0)
+    //[calendar_time:2021-04-29 09:56:45.926  system_uptime:84202378]
+    // Sending event #200
+:Sending Trackball (ACTION_MOVE): 0:(4.0,-4.0)
+:Sending Touch (ACTION_DOWN): 0:(596.0,175.0)
+:Sending Touch (ACTION_UP): 0:(578.059,192.04521)
+:Sending Trackball (ACTION_MOVE): 0:(0.0,1.0)
+:Sending Touch (ACTION_DOWN): 0:(1027.0,1286.0)
+:Sending Touch (ACTION_UP): 0:(1076.5059,1344.112)
+:Sending Touch (ACTION_DOWN): 0:(1410.0,1934.0)
+:Sending Touch (ACTION_UP): 0:(1440.0,1803.0873)
+:Sending Touch (ACTION_DOWN): 0:(658.0,2066.0)
+:Sending Touch (ACTION_UP): 0:(656.54865,2078.9062)
+:Sending Touch (ACTION_DOWN): 0:(418.0,1360.0)
+:Sending Touch (ACTION_UP): 0:(420.23306,1372.4285)
+:Sending Trackball (ACTION_MOVE): 0:(-5.0,-3.0)
+:Sending Touch (ACTION_DOWN): 0:(1396.0,1772.0)
+:Sending Touch (ACTION_UP): 0:(1392.8004,1762.1273)
+:Sending Touch (ACTION_DOWN): 0:(723.0,2092.0)
+    //[calendar_time:2021-04-29 09:56:46.848  system_uptime:84203302]
+    // Sending event #300
+:Sending Touch (ACTION_UP): 0:(787.93085,2037.4806)
+:Sending Trackball (ACTION_MOVE): 0:(-1.0,-5.0)
+:Sending Trackball (ACTION_MOVE): 0:(-4.0,-3.0)
+:Sending Trackball (ACTION_MOVE): 0:(2.0,-3.0)
+:Sending Touch (ACTION_DOWN): 0:(640.0,2060.0)
+:Sending Touch (ACTION_UP): 0:(582.5128,2020.9435)
+:Sending Touch (ACTION_DOWN): 0:(186.0,1994.0)
+:Sending Touch (ACTION_UP): 0:(189.60085,1988.8705)
+:Switch: #Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;launchFlags=0x10200000;component=com.example.memevz/.MainActivity;end
+    // Allowing start of Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.example.memevz/.MainActivity } in package com.example.memevz
+:Sending Touch (ACTION_DOWN): 0:(360.0,41.0)
+    // Injection Failed
+:Sending Touch (ACTION_UP): 0:(373.02853,41.66884)
+    // Injection Failed
+:Switch: #Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;launchFlags=0x10200000;component=com.example.memevz/.MainActivity;end
+    // Allowing start of Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.example.memevz/.MainActivity } in package com.example.memevz
+:Sending Trackball (ACTION_MOVE): 0:(2.0,4.0)
+:Sending Trackball (ACTION_MOVE): 0:(-4.0,2.0)
+:Sending Touch (ACTION_DOWN): 0:(434.0,314.0)
+:Sending Touch (ACTION_UP): 0:(428.85187,299.72247)
+    //[calendar_time:2021-04-29 09:56:47.883  system_uptime:84204334]
+    // Sending event #400
+    //[calendar_time:2021-04-29 09:56:47.883  system_uptime:84204335]
+    // Sending event #400
+:Sending Touch (ACTION_DOWN): 0:(344.0,1160.0)
+:Sending Touch (ACTION_UP): 0:(233.38455,1164.4531)
+:Sending Trackball (ACTION_MOVE): 0:(1.0,-4.0)
+:Sending Trackball (ACTION_MOVE): 0:(-5.0,-1.0)
+:Sending Trackball (ACTION_MOVE): 0:(1.0,0.0)
+:Sending Trackball (ACTION_UP): 0:(0.0,0.0)
+:Sending Touch (ACTION_DOWN): 0:(1148.0,204.0)
+:Sending Touch (ACTION_UP): 0:(1144.9584,154.24406)
+:Sending Touch (ACTION_DOWN): 0:(1264.0,1830.0)
+:Sending Touch (ACTION_UP): 0:(1370.5353,1724.5957)
+:Sending Touch (ACTION_DOWN): 0:(325.0,1951.0)
+:Sending Touch (ACTION_UP): 0:(322.59723,1938.8827)
+:Sending Touch (ACTION_DOWN): 0:(1142.0,792.0)
+:Sending Touch (ACTION_UP): 0:(1161.9751,790.6725)
+:Sending Trackball (ACTION_MOVE): 0:(-1.0,-3.0)
+:Sending Trackball (ACTION_MOVE): 0:(0.0,-1.0)
+    //[calendar_time:2021-04-29 09:56:48.813  system_uptime:84205265]
+    // Sending event #500
+:Sending Touch (ACTION_DOWN): 0:(95.0,2257.0)
+:Sending Touch (ACTION_UP): 0:(122.866425,2167.181)
+:Sending Trackball (ACTION_MOVE): 0:(2.0,-5.0)
+:Sending Flip keyboardOpen=false
+Got IOException performing flipjava.io.FileNotFoundException: /dev/input/event0: open failed: EACCES (Permission denied)
+    // Injection Failed
+:Sending Touch (ACTION_DOWN): 0:(827.0,1669.0)
+:Sending Touch (ACTION_UP): 0:(823.3565,1661.7546)
+:Sending Touch (ACTION_DOWN): 0:(980.0,67.0)
+    // Injection Failed
+:Sending Touch (ACTION_UP): 0:(971.54736,71.47642)
+    // Injection Failed
+:Sending Touch (ACTION_DOWN): 0:(1226.0,1119.0)
+:Sending Touch (ACTION_UP): 0:(1224.5181,1107.3269)
+:Sending Touch (ACTION_DOWN): 0:(1405.0,2230.0)
+:Sending Touch (ACTION_UP): 0:(1410.8108,2220.2437)
+    // Allowing start of Intent { cmp=com.example.memevz/.ProfileActivity } in package com.example.memevz
+:Switch: #Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;launchFlags=0x10200000;component=com.example.memevz/.MainActivity;end
+    // Allowing start of Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.example.memevz/.MainActivity } in package com.example.memevz
+:Sending Touch (ACTION_DOWN): 0:(497.0,629.0)
+:Sending Touch (ACTION_UP): 0:(503.1125,614.6799)
+:Sending Trackball (ACTION_MOVE): 0:(3.0,0.0)
+:Sending Trackball (ACTION_MOVE): 0:(1.0,4.0)
+    // Allowing start of Intent { cmp=com.example.memevz/.HomeActivity } in package com.example.memevz
+:Sending Touch (ACTION_DOWN): 0:(738.0,1898.0)
+:Sending Touch (ACTION_UP): 0:(733.40686,1884.3832)
+    // Rejecting start of Intent { act=android.intent.action.CALL_BUTTON cmp=com.android.dialer/.main.impl.MainActivity } in package com.android.dialer
+:Sending Trackball (ACTION_MOVE): 0:(4.0,-3.0)
+:Sending Touch (ACTION_DOWN): 0:(998.0,1524.0)
+    //[calendar_time:2021-04-29 09:56:50.914  system_uptime:84207366]
+    // Sending event #600
+:Sending Touch (ACTION_UP): 0:(1010.07007,1514.9296)
+:Sending Touch (ACTION_DOWN): 0:(999.0,2144.0)
+:Sending Touch (ACTION_UP): 0:(981.5971,2132.785)
+:Sending Touch (ACTION_DOWN): 0:(232.0,1353.0)
+:Sending Touch (ACTION_UP): 0:(234.61337,1353.9734)
+:Sending Touch (ACTION_DOWN): 0:(1030.0,1042.0)
+:Sending Touch (ACTION_UP): 0:(1029.1316,1055.6415)
+:Sending Touch (ACTION_DOWN): 0:(878.0,1769.0)
+:Sending Touch (ACTION_UP): 0:(874.2824,1768.4045)
+:Sending Trackball (ACTION_MOVE): 0:(-3.0,1.0)
+:Sending Trackball (ACTION_MOVE): 0:(-4.0,-2.0)
+:Sending Touch (ACTION_DOWN): 0:(788.0,466.0)
+:Sending Touch (ACTION_UP): 0:(783.6928,461.26843)
+:Sending Touch (ACTION_DOWN): 0:(985.0,2373.0)
+:Sending Touch (ACTION_UP): 0:(968.5428,2392.0)
+:Sending Flip keyboardOpen=true
+Got IOException performing flipjava.io.FileNotFoundException: /dev/input/event0: open failed: EACCES (Permission denied)
+    // Injection Failed
+    // Allowing start of Intent { cmp=com.example.memevz/.ProfileActivity } in package com.example.memevz
+:Sending Trackball (ACTION_MOVE): 0:(-2.0,3.0)
+:Sending Touch (ACTION_DOWN): 0:(393.0,868.0)
+:Sending Touch (ACTION_UP): 0:(359.1442,791.1714)
+    // Allowing start of Intent { cmp=com.example.memevz/.LoginActivity } in package com.example.memevz
+:Sending Touch (ACTION_DOWN): 0:(1379.0,262.0)
+    // Injection Failed
+    // Injection Failed
+    // Injection Failed
+:Sending Touch (ACTION_UP): 0:(1319.0856,293.61768)
+    // Injection Failed
+:Sending Touch (ACTION_DOWN): 0:(987.0,285.0)
+:Sending Touch (ACTION_UP): 0:(982.62024,287.13873)
+    //[calendar_time:2021-04-29 09:56:52.935  system_uptime:84209387]
+    // Sending event #700
+    //[calendar_time:2021-04-29 09:56:52.943  system_uptime:84209395]
+    // Sending event #700
+:Sending Touch (ACTION_DOWN): 0:(1183.0,1406.0)
+:Sending Touch (ACTION_UP): 0:(1175.0763,1400.3682)
+:Sending Trackball (ACTION_MOVE): 0:(0.0,-5.0)
+:Sending Touch (ACTION_DOWN): 0:(1223.0,106.0)
+:Sending Touch (ACTION_UP): 0:(1250.0378,54.37629)
+:Sending Trackball (ACTION_MOVE): 0:(1.0,-5.0)
+:Sending Touch (ACTION_DOWN): 0:(376.0,357.0)
+:Sending Touch (ACTION_UP): 0:(461.11453,443.92136)
+:Sending Touch (ACTION_DOWN): 0:(107.0,2185.0)
+:Sending Touch (ACTION_UP): 0:(103.19,2216.6328)
+:Sending Trackball (ACTION_MOVE): 0:(0.0,-5.0)
+:Sending Trackball (ACTION_UP): 0:(0.0,0.0)
+:Sending Touch (ACTION_DOWN): 0:(158.0,990.0)
+:Sending Touch (ACTION_UP): 0:(158.91481,976.15607)
+:Sending Touch (ACTION_DOWN): 0:(150.0,1832.0)
+:Sending Touch (ACTION_UP): 0:(140.40292,1832.2104)
+:Sending Touch (ACTION_DOWN): 0:(1175.0,448.0)
+:Sending Touch (ACTION_UP): 0:(1194.3977,490.00146)
+:Sending Touch (ACTION_DOWN): 0:(704.0,318.0)
+:Sending Touch (ACTION_UP): 0:(770.93207,339.7632)
+:Sending Trackball (ACTION_MOVE): 0:(-4.0,1.0)
+    //[calendar_time:2021-04-29 09:56:54.351  system_uptime:84210803]
+    // Sending event #800
+:Sending Touch (ACTION_DOWN): 0:(1250.0,1132.0)
+:Sending Touch (ACTION_UP): 0:(1250.1036,1128.2906)
+:Sending Touch (ACTION_DOWN): 0:(177.0,93.0)
+:Sending Touch (ACTION_UP): 0:(176.10294,114.938034)
+:Switch: #Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;launchFlags=0x10200000;component=com.example.memevz/.MainActivity;end
+    // Allowing start of Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.example.memevz/.MainActivity } in package com.example.memevz
+:Sending Trackball (ACTION_MOVE): 0:(-5.0,-4.0)
+:Sending Trackball (ACTION_MOVE): 0:(0.0,-2.0)
+:Sending Touch (ACTION_DOWN): 0:(53.0,349.0)
+:Sending Touch (ACTION_UP): 0:(52.676895,366.5555)
+:Sending Touch (ACTION_DOWN): 0:(502.0,840.0)
+:Sending Touch (ACTION_UP): 0:(422.66083,769.0667)
+:Sending Trackball (ACTION_MOVE): 0:(-1.0,0.0)
+:Sending Trackball (ACTION_MOVE): 0:(3.0,-3.0)
+:Sending Trackball (ACTION_MOVE): 0:(2.0,-5.0)
+:Sending Touch (ACTION_DOWN): 0:(903.0,666.0)
+:Sending Touch (ACTION_UP): 0:(867.81995,671.88367)
+    //[calendar_time:2021-04-29 09:56:54.942  system_uptime:84211394]
+    // Sending event #900
+:Switch: #Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;launchFlags=0x10200000;component=com.example.memevz/.MainActivity;end
+    // Allowing start of Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.example.memevz/.MainActivity } in package com.example.memevz
+:Sending Touch (ACTION_DOWN): 0:(1041.0,1767.0)
+:Sending Touch (ACTION_UP): 0:(1050.6796,1761.8539)
+:Sending Touch (ACTION_DOWN): 0:(972.0,1065.0)
+:Sending Touch (ACTION_UP): 0:(974.48944,1063.5508)
+:Sending Trackball (ACTION_MOVE): 0:(0.0,4.0)
+:Sending Trackball (ACTION_UP): 0:(0.0,0.0)
+:Sending Trackball (ACTION_MOVE): 0:(-2.0,-5.0)
+:Sending Touch (ACTION_DOWN): 0:(3.0,1870.0)
+:Sending Touch (ACTION_UP): 0:(80.811554,1957.1075)
+:Sending Trackball (ACTION_MOVE): 0:(-2.0,2.0)
+:Sending Trackball (ACTION_UP): 0:(0.0,0.0)
+:Sending Touch (ACTION_DOWN): 0:(22.0,244.0)
+:Sending Touch (ACTION_UP): 0:(11.0065365,255.88757)
+:Sending Touch (ACTION_DOWN): 0:(708.0,1090.0)
+:Sending Touch (ACTION_UP): 0:(687.6747,1088.7529)
+:Sending Touch (ACTION_DOWN): 0:(1218.0,51.0)
+    // Injection Failed
+:Sending Touch (ACTION_UP): 0:(1206.8608,62.423523)
+    // Injection Failed
+:Sending Touch (ACTION_DOWN): 0:(1148.0,862.0)
+:Sending Touch (ACTION_UP): 0:(1164.7344,881.30084)
+:Sending Trackball (ACTION_MOVE): 0:(-4.0,-4.0)
+Events injected: 1000
+:Sending rotation degree=0, persist=false
+:Dropped: keys=0 pointers=10 trackballs=0 flips=2 rotations=0
+## Network stats: elapsed time=12536ms (0ms mobile, 0ms wifi, 12536ms not connected)
+// Monkey finished
