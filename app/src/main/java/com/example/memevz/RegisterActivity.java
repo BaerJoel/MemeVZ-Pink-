@@ -37,7 +37,6 @@ public class RegisterActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //openHomeActivity();
                 register();
             }
         });
