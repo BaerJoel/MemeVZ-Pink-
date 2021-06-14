@@ -22,10 +22,10 @@ public interface UserDao {
     @Query("SELECT * FROM user")
     List<UserDB> getAllUsers();
 
-    @Query("SELECT * FROM user WHERE (mail = :mailOrUsername OR username = :mailOrUsername)")
+    @Query("SELECT * FROM user WHERE (LOWER(mail) LIKE LOWER(:mailOrUsername) OR LOWER(username) = LOWER(:mailOrUsername))")
     UserDB getUser(String mailOrUsername);
 
-    @Query("SELECT * FROM user WHERE id = :user_id")
+    @Query("SELECT * FROM user WHERE LOWER(id) LIKE LOWER(:user_id)")
     UserDB getUserByID(long user_id);
 
     @Update
