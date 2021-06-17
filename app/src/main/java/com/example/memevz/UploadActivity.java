@@ -31,6 +31,7 @@ public class UploadActivity extends AppCompatActivity {
     private UserDB user;
     private Uri imageUri;
     private byte[] bArray;
+    private RoomDB database;
     private int user_id;
 
     @Override
@@ -38,40 +39,20 @@ public class UploadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
 
-        //get User
-        RoomDB database = RoomDB.getInstance(this);
-        SharedPreferences s = getSharedPreferences("User", MODE_PRIVATE);
-        user = database.userDao().getUserByID(s.getLong("user_id", 1));
-        meme.setUploader_id(user.getId());
+        getUser();
 
-        //assign Upload Elements
-        chooseBtn = (Button)findViewById(R.id.choose_img_btn);
-        upload = (Button)findViewById(R.id.upload_btn);
-        imageView = (ImageView)findViewById(R.id.upload_img_preview);
+        assignUploadElements();
 
-        //onClick events for Buttons
-        chooseBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectImage();
-            }
-        });
-        upload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                uploadMeme();
-            }
-        });
+        assignOnClickEvents();
 
-        //assign NavigationBar Buttons
-        btnHome = (ImageButton)findViewById(R.id.btn_nav_home);
-        btnUpload = (ImageButton)findViewById(R.id.btn_nav_upload);
-        btnProfile = (ImageButton)findViewById(R.id.btn_nav_profile);
+        createNavBar();
 
-        //correct the NavigationBar colors
         setNavigationBarColor();
 
-        //NavigationBar onClick Events
+        assignNavBarEvents();
+    }
+
+    private void assignNavBarEvents() {
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,6 +73,40 @@ public class UploadActivity extends AppCompatActivity {
         });
     }
 
+    private void createNavBar() {
+        btnHome = (ImageButton) findViewById(R.id.btn_nav_home);
+        btnUpload = (ImageButton) findViewById(R.id.btn_nav_upload);
+        btnProfile = (ImageButton) findViewById(R.id.btn_nav_profile);
+    }
+
+    private void assignOnClickEvents() {
+        chooseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectImage();
+            }
+        });
+        upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadMeme();
+            }
+        });
+    }
+
+    private void assignUploadElements() {
+        chooseBtn = (Button) findViewById(R.id.choose_img_btn);
+        upload = (Button) findViewById(R.id.upload_btn);
+        imageView = (ImageView) findViewById(R.id.upload_img_preview);
+    }
+
+    private void getUser() {
+        database = RoomDB.getInstance(this);
+        SharedPreferences s = getSharedPreferences("User", MODE_PRIVATE);
+        user = database.userDao().getUserByID(s.getLong("user_id", 1));
+        meme.setUploader_id(user.getId());
+    }
+
 
     private void uploadMeme() {
         try {
@@ -103,8 +118,7 @@ public class UploadActivity extends AppCompatActivity {
             meme.setUploader_id(user.getId());
             database.memeDao().addMeme(meme);
             imageView.setImageDrawable(getResources().getDrawable(R.drawable.successful));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             imageView.setImageDrawable(getResources().getDrawable(R.drawable.notsuccessful));
         }
     }
@@ -151,7 +165,7 @@ public class UploadActivity extends AppCompatActivity {
     private void openProfileActivity() {
         Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);
-        overridePendingTransition(0,0);
+        overridePendingTransition(0, 0);
     }
 
     private void openUploadActivity() {
@@ -160,6 +174,6 @@ public class UploadActivity extends AppCompatActivity {
     private void openHomeActivity() {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
-        overridePendingTransition(0,0);
+        overridePendingTransition(0, 0);
     }
 }
